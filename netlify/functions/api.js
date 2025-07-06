@@ -191,6 +191,11 @@ connectDB().then(() => {
   console.error('MongoDB connection error:', err);
 });
 
+// Health check route for Netlify function routing debug
+app.get("/api/health", (req, res) => {
+  res.json({ status: "ok", time: new Date().toISOString() });
+});
+
 // Auth routes
 app.get("/api/auth/google", passport.authenticate("google", { scope: ["profile", "email"] }));
 
@@ -403,11 +408,6 @@ app.post("/api/projects", isAuthenticated, async (req, res) => {
     console.error('Error creating project:', error);
     res.status(500).json({ message: "Error creating project" });
   }
-});
-
-// Health check
-app.get("/api/health", (req, res) => {
-  res.json({ status: "OK", timestamp: new Date().toISOString() });
 });
 
 exports.handler = builder(app); 
