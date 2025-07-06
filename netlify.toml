@@ -18,7 +18,11 @@ external_node_modules = [
   "passport",
   "passport-local",
   "passport-google-oauth20",
-  "zod"
+  "zod",
+  "memorystore",
+  "ws",
+  "path",
+  "fs"
 ]
 node_bundler = "esbuild"
 
