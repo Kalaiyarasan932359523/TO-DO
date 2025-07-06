@@ -211,7 +211,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [Vercel](https://vercel.com/) - Deployment platform
 - [Tailwind CSS](https://tailwindcss.com/) - Styling framework
 
-WORKING VIDEO LINK----https://youtu.be/lO5RFFIzbyg?si=oIDuM4lSnvgcxKbW
+WORKING VIDEO LINK----https://youtu.be/QU_DeS_Nybo
 
 ## 📞 Support
 
