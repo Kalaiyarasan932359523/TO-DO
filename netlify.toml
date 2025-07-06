@@ -15,7 +15,10 @@ external_node_modules = [
   "mongoose",
   "dotenv",
   "multer",
-  "passport"
+  "passport",
+  "passport-local",
+  "passport-google-oauth20",
+  "zod"
 ]
 node_bundler = "esbuild"
 
