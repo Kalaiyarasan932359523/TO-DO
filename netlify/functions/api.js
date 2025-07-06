@@ -191,6 +191,12 @@ connectDB().then(() => {
   console.error('MongoDB connection error:', err);
 });
 
+// Log every request to help debug Netlify routing
+app.use((req, res, next) => {
+  console.log(`[Netlify API] ${req.method} ${req.url}`);
+  next();
+});
+
 // Health check route for Netlify function routing debug
 app.get("/api/health", (req, res) => {
   res.json({ status: "ok", time: new Date().toISOString() });
