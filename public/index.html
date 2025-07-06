@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Backend</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .endpoint {
+            background: #f8f9fa;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border-left: 4px solid #007bff;
+        }
+        .method {
+            font-weight: bold;
+            color: #007bff;
+        }
+        .url {
+            font-family: monospace;
+            background: #e9ecef;
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 Backend API is Running!</h1>
+        <p>Your Express.js backend has been successfully deployed to Vercel as serverless functions.</p>
+        
+        <h2>Available Endpoints:</h2>
+        <div class="endpoint">
+            <span class="method">GET</span> <span class="url">/api/health</span> - Health check
+        </div>
+        <div class="endpoint">
+            <span class="method">GET</span> <span class="url">/api/tasks</span> - Get all tasks
+        </div>
+        <div class="endpoint">
+            <span class="method">POST</span> <span class="url">/api/tasks</span> - Create new task
+        </div>
+        
+        <h2>Testing Your API:</h2>
+        <p>You can test your API endpoints using tools like:</p>
+        <ul>
+            <li>Postman</li>
+            <li>cURL</li>
+            <li>Browser developer tools</li>
+        </ul>
+        
+        <h2>Environment Variables:</h2>
+        <p>Make sure you've set these in your Vercel dashboard:</p>
+        <ul>
+            <li><code>MONGODB_URI</code> - Your MongoDB connection string</li>
+            <li><code>SESSION_SECRET</code> - A secure random string</li>
+            <li><code>NODE_ENV</code> - Set to "production"</li>
+        </ul>
+        
+        <h2>Next Steps:</h2>
+        <p>Once your backend is working, you can deploy your frontend separately or integrate it with this backend.</p>
+    </div>
+</body>
+</html> 
