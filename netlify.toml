@@ -4,8 +4,19 @@
 
 [functions]
   directory = "netlify/functions"
+
+[functions."*"]
+  external_node_modules = [
+    "@netlify/functions",
+    "express",
+    "express-session",
+    "cors",
+    "mongoose",
+    "dotenv",
+    "multer",
+    "passport"
+  ]
   node_bundler = "esbuild"
-  external_node_modules = ["@netlify/functions", "express", "express-session", "cors", "mongoose", "dotenv", "multer", "passport"]
 
 [[redirects]]
   from = "/api/*"
