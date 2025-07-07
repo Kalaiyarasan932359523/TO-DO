@@ -13,4 +13,16 @@ const userSchemaMongoose = new mongoose.Schema({
   timestamps: true
 });
 
-export const User = mongoose.model('User', userSchemaMongoose); 
+export class User {
+  constructor(username, password, name, email, role, avatar, googleId) {
+    this.username = username;
+    this.password = password;
+    this.name = name;
+    this.email = email;
+    this.role = role;
+    this.avatar = avatar;
+    this.googleId = googleId;
+  }
+}
+
+export const UserModel = mongoose.model('User', userSchemaMongoose); 

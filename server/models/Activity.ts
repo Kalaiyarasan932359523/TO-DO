@@ -12,4 +12,6 @@ const activitySchemaMongoose = new mongoose.Schema({
   timestamps: true
 });
 
-export const Activity = mongoose.model('Activity', activitySchemaMongoose); 
+export class Activity {
+  static model = mongoose.model('Activity', activitySchemaMongoose);
+} 

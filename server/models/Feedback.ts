@@ -14,4 +14,6 @@ const feedbackSchemaMongoose = new mongoose.Schema({
   timestamps: true
 });
 
-export const Feedback = mongoose.model('Feedback', feedbackSchemaMongoose); 
+export class Feedback {
+  static model = mongoose.model('Feedback', feedbackSchemaMongoose);
+} 

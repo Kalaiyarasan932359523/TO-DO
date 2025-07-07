@@ -14,4 +14,17 @@ const fileSchemaMongoose = new mongoose.Schema({
   timestamps: true
 });
 
-export const File = mongoose.model('File', fileSchemaMongoose); 
+export class File {
+  constructor(filename, filepath, size, mimetype, project_id, task_id, uploader_id, uploaded_at) {
+    this.filename = filename;
+    this.filepath = filepath;
+    this.size = size;
+    this.mimetype = mimetype;
+    this.project_id = project_id;
+    this.task_id = task_id;
+    this.uploader_id = uploader_id;
+    this.uploaded_at = uploaded_at;
+  }
+}
+
+export const FileModel = mongoose.model('File', fileSchemaMongoose); 

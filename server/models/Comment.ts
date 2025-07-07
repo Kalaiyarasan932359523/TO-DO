@@ -11,4 +11,19 @@ const commentSchemaMongoose = new mongoose.Schema({
   timestamps: true
 });
 
+export class Comment {
+  constructor(content, task_id, project_id, user_id) {
+    this.content = content;
+    this.task_id = task_id;
+    this.project_id = project_id;
+    this.user_id = user_id;
+  }
+
+  async save() {
+    const comment = new mongoose.model('Comment', commentSchemaMongoose)(this);
+    await comment.save();
+    return comment;
+  }
+}
+
 export const Comment = mongoose.model('Comment', commentSchemaMongoose); 
