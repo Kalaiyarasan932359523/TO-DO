@@ -79,9 +79,9 @@ app.use((req, res, next) => {
 
   // Only setup vite in development and after setting up all the other routes
   if (process.env.NODE_ENV === "development") {
-    // Dynamically import viteDevServer and vite.config only in development
-    const viteDevServer = await import("./viteDevServer.js");
-    const viteConfig = await import("../vite.config.js");
+    // Dynamically import viteDevServer and vite.config only in development from dev/
+    const viteDevServer = await import("../dev/viteDevServer.js");
+    const viteConfig = await import("../dev/vite.config.js");
     await viteDevServer.setupVite(app, server, viteConfig.default);
   } else if (process.env.API_ONLY !== "true") {
     serveStatic(app);
