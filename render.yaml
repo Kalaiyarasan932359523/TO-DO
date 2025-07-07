@@ -2,7 +2,7 @@ services:
   - type: web
     name: collaborative-task-manager-api
     env: node
-    buildCommand: npm install
+    buildCommand: npm install && npm run build
     startCommand: npm start
     rootDir: .
     envVars:
