@@ -3,13 +3,12 @@ import type { Server } from "http";
 import path, { dirname } from "path";
 import fs from "fs";
 import { fileURLToPath } from "url";
-import viteConfig from "../vite.config";
 import { nanoid } from "nanoid";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-export async function setupVite(app: Express, server: Server) {
+export async function setupVite(app: Express, server: Server, viteConfig: any) {
   // Only imported and called in development
   const { createServer: createViteServer, createLogger } = await import("vite");
   const viteLogger = createLogger();
