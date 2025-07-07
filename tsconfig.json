@@ -15,7 +15,7 @@
     "isolatedModules": true,
     "noEmit": false,
     "baseUrl": ".",
-    "types": ["node"],
+    "types": ["node", "cors", "passport-local"],
     "paths": {
       "@shared/*": ["shared/*"]
     }
