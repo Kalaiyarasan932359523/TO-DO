@@ -1,17 +1,41 @@
 import mongoose from 'mongoose';
-import { activitySchema } from '../../shared/schema.js';
 
-const activitySchemaMongoose = new mongoose.Schema({
-  action: { type: String, required: true },
-  description: { type: String, required: true },
-  user_id: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
-  project_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Project' },
-  task_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Task' },
-  created_at: { type: Date, default: Date.now },
+const activitySchema = new mongoose.Schema({
+  type: {
+    type: String,
+    required: true,
+    enum: ['task_created', 'task_updated', 'task_completed', 'comment_added', 'file_uploaded', 'project_created', 'project_updated']
+  },
+  description: {
+    type: String,
+    required: true,
+    trim: true
+  },
+  user_id: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true
+  },
+  task_id: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Task'
+  },
+  project_id: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Project'
+  },
+  metadata: {
+    type: mongoose.Schema.Types.Mixed,
+    default: {}
+  }
 }, {
   timestamps: true
 });
 
-export class Activity {
-  static model = mongoose.model('Activity', activitySchemaMongoose);
-} 
+// Add any methods or statics here if needed
+activitySchema.methods.toJSON = function() {
+  const activity = this.toObject();
+  return activity;
+};
+
+export const Activity = mongoose.model("Activity", activitySchema); 

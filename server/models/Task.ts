@@ -1,34 +1,59 @@
 import mongoose from 'mongoose';
-import { taskSchema, TaskStatus, TaskPriority } from '../../shared/schema.js';
+import { TaskStatus } from '../../shared/schema.js';
 
-const taskSchemaMongoose = new mongoose.Schema({
-  title: { type: String, required: true },
-  description: { type: String },
-  status: { type: String, enum: Object.values(TaskStatus), default: TaskStatus.TODO },
-  priority: { type: String, enum: Object.values(TaskPriority), default: TaskPriority.MEDIUM },
-  deadline: { type: Date },
-  project_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Project' },
-  assignee_id: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-  creator_id: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
-  shared_with: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
-  completed_at: { type: Date },
+const taskSchema = new mongoose.Schema({
+  title: {
+    type: String,
+    required: true,
+    trim: true
+  },
+  description: {
+    type: String,
+    trim: true
+  },
+  status: {
+    type: String,
+    enum: Object.values(TaskStatus),
+    default: TaskStatus.TODO
+  },
+  priority: {
+    type: String,
+    enum: ['low', 'medium', 'high', 'urgent'],
+    default: 'medium'
+  },
+  deadline: {
+    type: Date
+  },
+  project_id: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Project'
+  },
+  assignee_id: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  },
+  creator_id: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true
+  },
+  shared_with: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  }],
+  completed_at: {
+    type: Date,
+    default: null
+  }
 }, {
   timestamps: true
 });
 
-export class Task {
-  constructor(title, description, status, priority, deadline, project_id, assignee_id, creator_id, shared_with, completed_at) {
-    this.title = title;
-    this.description = description;
-    this.status = status;
-    this.priority = priority;
-    this.deadline = deadline;
-    this.project_id = project_id;
-    this.assignee_id = assignee_id;
-    this.creator_id = creator_id;
-    this.shared_with = shared_with;
-    this.completed_at = completed_at;
-  }
-}
+// Add any methods or statics here if needed
+taskSchema.methods.markAsCompleted = function() {
+  this.status = TaskStatus.COMPLETED;
+  this.completed_at = new Date();
+  return this.save();
+};
 
-export const Task = mongoose.model('Task', taskSchemaMongoose); 
+export const Task = mongoose.model("Task", taskSchema); 

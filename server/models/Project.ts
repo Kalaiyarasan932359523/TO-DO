@@ -1,38 +1,48 @@
 import mongoose from 'mongoose';
-import { projectSchema, ProjectStatus } from '../../shared/schema.js';
+import { ProjectStatus } from '../../shared/schema.js';
 
-const projectSchemaMongoose = new mongoose.Schema({
-  name: { type: String, required: true },
-  description: { type: String },
-  status: { type: String, enum: Object.values(ProjectStatus), default: ProjectStatus.PLANNING },
-  deadline: { type: Date },
-  owner_id: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
-  members: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
+const projectSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+    trim: true
+  },
+  description: {
+    type: String,
+    trim: true
+  },
+  status: {
+    type: String,
+    enum: Object.values(ProjectStatus),
+    default: ProjectStatus.ACTIVE
+  },
+  deadline: {
+    type: Date
+  },
+  owner_id: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true
+  },
+  members: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  }]
 }, {
   timestamps: true
 });
 
-export class Project {
-  constructor(name, description, status, deadline, owner_id, members) {
-    this.name = name;
-    this.description = description;
-    this.status = status;
-    this.deadline = deadline;
-    this.owner_id = owner_id;
-    this.members = members;
+// Add any methods or statics here if needed
+projectSchema.methods.addMember = function(userId: string) {
+  if (!this.members.includes(userId)) {
+    this.members.push(userId);
   }
+  return this.save();
+};
 
-  save() {
-    // Implementation of save method
-  }
+projectSchema.methods.removeMember = function(userId: string) {
+  this.members = this.members.filter((id: string) => id.toString() !== userId);
+  return this.save();
+};
 
-  update(updates) {
-    // Implementation of update method
-  }
-
-  delete() {
-    // Implementation of delete method
-  }
-}
-
-export const ProjectModel = mongoose.model('Project', projectSchemaMongoose); 
+export const Project = mongoose.model("Project", projectSchema); 
