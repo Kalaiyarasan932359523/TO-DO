@@ -5,15 +5,6 @@ import multer from "multer";
 import path from "path";
 import fs from "fs";
 import { handleChatRequest } from "./chatbot.js";
-import {
-  // projectSchema, // If needed for validation, otherwise remove
-  // commentSchema, // If needed for validation, otherwise remove
-  // activitySchema, // If needed for validation, otherwise remove
-  // feedbackSchema, // If needed for validation, otherwise remove
-  TaskStatus,
-  ProjectStatus,
-  UserRole
-} from "../../shared/schema";
 import passport from "passport";
 import { User, Project, Task, Comment, Activity, File, Feedback } from './models/index.js';
 
