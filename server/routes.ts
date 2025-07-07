@@ -500,7 +500,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
   const httpServer = createServer(app);
 
   app.use((err: any, req: Request, res: Response, next: NextFunction) => {
-    // your error handling logic here
+    console.error('Unhandled error:', err);
+    res.status(500).json({ message: 'Internal Server Error', error: err?.message || err });
   });
 
   return httpServer;
