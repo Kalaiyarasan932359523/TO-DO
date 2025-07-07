@@ -1,5 +1,5 @@
 import mongoose, { Document } from "mongoose";
-import { ProjectStatus } from '../../shared/schema';
+import { ProjectStatus } from '../../shared/schema.js';
 
 // Interface for Project document
 export interface IProject extends Document {

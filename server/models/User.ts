@@ -1,5 +1,5 @@
 import mongoose, { Document, Model } from "mongoose";
-import { UserRole } from '../../shared/schema';
+import { UserRole } from '../../shared/schema.js';
 
 // Interface for User document
 export interface IUser extends Document {

@@ -1,5 +1,5 @@
 import mongoose, { Document } from "mongoose";
-import { TaskStatus } from '../../shared/schema';
+import { TaskStatus } from '../../shared/schema.js';
 
 // Interface for Task document
 export interface ITask extends Document {
