@@ -1,18 +1,9 @@
 {
-  "include": [
-    "server/**/*",
-    "shared/**/*"
-  ],
-  "exclude": [
-    "node_modules",
-    "client/**/*",
-    "dist"
-  ],
   "compilerOptions": {
     "target": "ES2022",
     "lib": ["ES2022"],
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
     "outDir": "dist",
     "rootDir": ".",
     "strict": true,
@@ -23,11 +14,19 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": false,
-    "allowImportingTsExtensions": false,
     "baseUrl": ".",
     "types": ["node"],
     "paths": {
       "@shared/*": ["shared/*"]
     }
-  }
+  },
+  "include": [
+    "server/**/*",
+    "shared/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "client/**/*",
+    "dist"
+  ]
 }

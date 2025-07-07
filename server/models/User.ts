@@ -1,4 +1,4 @@
-import mongoose, { Document, Model, Query } from "mongoose";
+import mongoose, { Document, Model } from "mongoose";
 import { UserRole } from '../../shared/schema';
 
 // Interface for User document
@@ -12,16 +12,6 @@ export interface IUser extends Document {
   googleId?: string;
   createdAt: Date;
   updatedAt: Date;
-}
-
-// Interface for User model with static methods
-export interface IUserModel extends Model<IUser> {
-  findOne(conditions: any): Query<IUser | null, IUser>;
-  create(user: any): Promise<IUser>;
-  findById(id: any): Query<IUser | null, IUser>;
-  findByIdAndUpdate(id: any, update: any, options?: any): Query<IUser | null, IUser>;
-  find(conditions?: any): Query<IUser[], IUser>;
-  countDocuments(conditions?: any): Query<number, IUser>;
 }
 
 const userSchema = new mongoose.Schema<IUser>({
@@ -71,4 +61,4 @@ userSchema.methods.toJSON = function() {
   return user;
 };
 
-export const User = mongoose.model<IUser, IUserModel>("User", userSchema); 
+export const User = mongoose.model<IUser>("User", userSchema); 

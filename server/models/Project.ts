@@ -1,4 +1,4 @@
-import mongoose, { Document, Model, Query } from "mongoose";
+import mongoose, { Document } from "mongoose";
 import { ProjectStatus } from '../../shared/schema';
 
 // Interface for Project document
@@ -11,16 +11,6 @@ export interface IProject extends Document {
   members: mongoose.Types.ObjectId[];
   createdAt: Date;
   updatedAt: Date;
-}
-
-// Interface for Project model with static methods
-export interface IProjectModel extends Model<IProject> {
-  find(conditions?: any): Query<IProject[], IProject>;
-  findById(id: any): Query<IProject | null, IProject>;
-  findByIdAndUpdate(id: any, update: any, options?: any): Query<IProject | null, IProject>;
-  findByIdAndDelete(id: any): Query<IProject | null, IProject>;
-  create(project: any): Promise<IProject>;
-  countDocuments(conditions?: any): Query<number, IProject>;
 }
 
 const projectSchema = new mongoose.Schema<IProject>({
@@ -67,4 +57,4 @@ projectSchema.methods.removeMember = function(userId: string) {
   return this.save();
 };
 
-export const Project = mongoose.model<IProject, IProjectModel>("Project", projectSchema); 
+export const Project = mongoose.model<IProject>("Project", projectSchema); 

@@ -1,4 +1,4 @@
-import mongoose, { Document, Model, Query } from "mongoose";
+import mongoose, { Document } from "mongoose";
 
 // Interface for File document
 export interface IFile extends Document {
@@ -12,16 +12,6 @@ export interface IFile extends Document {
   uploaded_at: Date;
   createdAt: Date;
   updatedAt: Date;
-}
-
-// Interface for File model with static methods
-export interface IFileModel extends Model<IFile> {
-  find(conditions?: any): Query<IFile[], IFile>;
-  findById(id: any): Query<IFile | null, IFile>;
-  findByIdAndUpdate(id: any, update: any, options?: any): Query<IFile | null, IFile>;
-  findByIdAndDelete(id: any): Query<IFile | null, IFile>;
-  create(file: any): Promise<IFile>;
-  countDocuments(conditions?: any): Query<number, IFile>;
 }
 
 const fileSchema = new mongoose.Schema<IFile>({
@@ -69,4 +59,4 @@ fileSchema.methods.toJSON = function() {
   return file;
 };
 
-export const File = mongoose.model<IFile, IFileModel>("File", fileSchema); 
+export const File = mongoose.model<IFile>("File", fileSchema); 

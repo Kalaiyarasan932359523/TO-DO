@@ -1,4 +1,4 @@
-import mongoose, { Document, Model, Query } from "mongoose";
+import mongoose, { Document } from "mongoose";
 import { TaskStatus } from '../../shared/schema';
 
 // Interface for Task document
@@ -15,16 +15,6 @@ export interface ITask extends Document {
   completed_at?: Date;
   createdAt: Date;
   updatedAt: Date;
-}
-
-// Interface for Task model with static methods
-export interface ITaskModel extends Model<ITask> {
-  find(conditions?: any): Query<ITask[], ITask>;
-  findById(id: any): Query<ITask | null, ITask>;
-  findByIdAndUpdate(id: any, update: any, options?: any): Query<ITask | null, ITask>;
-  findByIdAndDelete(id: any): Query<ITask | null, ITask>;
-  create(task: any): Promise<ITask>;
-  countDocuments(conditions?: any): Query<number, ITask>;
 }
 
 const taskSchema = new mongoose.Schema<ITask>({
@@ -82,4 +72,4 @@ taskSchema.methods.markAsCompleted = function() {
   return this.save();
 };
 
-export const Task = mongoose.model<ITask, ITaskModel>("Task", taskSchema); 
+export const Task = mongoose.model<ITask>("Task", taskSchema); 
