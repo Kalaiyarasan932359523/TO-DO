@@ -87,7 +87,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
           console.error("Session save error:", err);
           return res.redirect("/login");
         }
-        res.redirect("/");
+        // Redirect to the frontend URL
+        const frontendUrl = process.env.FRONTEND_URL || "https://your-netlify-app.netlify.app";
+        res.redirect(frontendUrl);
       });
     } catch (err) {
       console.error("Google callback error:", err);

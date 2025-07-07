@@ -13,7 +13,11 @@ app.use(express.urlencoded({ extended: false }));
 
 // Allow CORS for frontend (adjust origin as needed)
 app.use(cors({
-  origin: 'http://localhost:3000', // Change if your frontend runs elsewhere
+  origin: [
+    'http://localhost:3000', // Development
+    'https://your-netlify-app.netlify.app', // Production - replace with your actual Netlify URL
+    process.env.FRONTEND_URL // Environment variable
+  ].filter(Boolean),
   credentials: true
 }));
 

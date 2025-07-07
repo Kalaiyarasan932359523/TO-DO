@@ -8,6 +8,7 @@ import { User } from "@/lib/types";
 import { getQueryFn, apiRequest, queryClient } from "../lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import { useLocation } from "wouter";
+import { config } from "@/lib/config";
 
 type AuthContextType = {
   user: User | null;
@@ -123,7 +124,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   });
 
   const googleLogin = () => {
-    window.location.href = "/api/auth/google";
+    // Use the Railway backend URL for Google OAuth
+    window.location.href = `${config.API_URL}/api/auth/google`;
   };
 
   const checkAuth = async () => {

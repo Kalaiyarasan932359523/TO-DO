@@ -82,7 +82,7 @@ const Project = mongoose.model('Project', projectSchema);
 passport.use(new GoogleStrategy({
   clientID: process.env.GOOGLE_CLIENT_ID || '',
   clientSecret: process.env.GOOGLE_CLIENT_SECRET || '',
-  callbackURL: process.env.GOOGLE_CALLBACK_URL || '/api/auth/google/callback'
+  callbackURL: process.env.GOOGLE_CALLBACK_URL || 'https://your-netlify-app.netlify.app/.netlify/functions/api/api/auth/google/callback'
 }, async (accessToken, refreshToken, profile, done) => {
   try {
     let user = await User.findOne({ googleId: profile.id });
@@ -219,7 +219,9 @@ app.get("/api/auth/google/callback", passport.authenticate("google", { failureRe
         console.error("Session save error:", err);
         return res.redirect("/login");
       }
-      res.redirect("/");
+      // Redirect to the frontend URL
+      const frontendUrl = process.env.FRONTEND_URL || "https://your-netlify-app.netlify.app";
+      res.redirect(frontendUrl);
     });
   } catch (err) {
     console.error("Google callback error:", err);
