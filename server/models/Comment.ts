@@ -1,6 +1,26 @@
-import mongoose from 'mongoose';
+import mongoose, { Document, Model } from "mongoose";
 
-const commentSchema = new mongoose.Schema({
+// Interface for Comment document
+export interface IComment extends Document {
+  content: string;
+  task_id?: mongoose.Types.ObjectId;
+  project_id?: mongoose.Types.ObjectId;
+  user_id: mongoose.Types.ObjectId;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+// Interface for Comment model with static methods
+export interface ICommentModel extends Model<IComment> {
+  find(conditions?: any): Promise<IComment[]>;
+  findById(id: any): Promise<IComment | null>;
+  findByIdAndUpdate(id: any, update: any, options?: any): Promise<IComment | null>;
+  findByIdAndDelete(id: any): Promise<IComment | null>;
+  create(comment: any): Promise<IComment>;
+  countDocuments(conditions?: any): Promise<number>;
+}
+
+const commentSchema = new mongoose.Schema<IComment>({
   content: {
     type: String,
     required: true,
@@ -29,4 +49,4 @@ commentSchema.methods.toJSON = function() {
   return comment;
 };
 
-export const Comment = mongoose.model("Comment", commentSchema); 
+export const Comment = mongoose.model<IComment, ICommentModel>("Comment", commentSchema); 

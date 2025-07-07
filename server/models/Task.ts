@@ -1,7 +1,33 @@
-import mongoose from 'mongoose';
+import mongoose, { Document, Model } from "mongoose";
 import { TaskStatus } from '../../shared/schema.js';
 
-const taskSchema = new mongoose.Schema({
+// Interface for Task document
+export interface ITask extends Document {
+  title: string;
+  description?: string;
+  status: TaskStatus;
+  priority: 'low' | 'medium' | 'high' | 'urgent';
+  deadline?: Date;
+  project_id?: mongoose.Types.ObjectId;
+  assignee_id?: mongoose.Types.ObjectId;
+  creator_id: mongoose.Types.ObjectId;
+  shared_with: mongoose.Types.ObjectId[];
+  completed_at?: Date;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+// Interface for Task model with static methods
+export interface ITaskModel extends Model<ITask> {
+  find(conditions?: any): Promise<ITask[]>;
+  findById(id: any): Promise<ITask | null>;
+  findByIdAndUpdate(id: any, update: any, options?: any): Promise<ITask | null>;
+  findByIdAndDelete(id: any): Promise<ITask | null>;
+  create(task: any): Promise<ITask>;
+  countDocuments(conditions?: any): Promise<number>;
+}
+
+const taskSchema = new mongoose.Schema<ITask>({
   title: {
     type: String,
     required: true,
@@ -56,4 +82,4 @@ taskSchema.methods.markAsCompleted = function() {
   return this.save();
 };
 
-export const Task = mongoose.model("Task", taskSchema); 
+export const Task = mongoose.model<ITask, ITaskModel>("Task", taskSchema); 

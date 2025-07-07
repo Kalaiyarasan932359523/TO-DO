@@ -1,7 +1,30 @@
-import mongoose from 'mongoose';
+import mongoose, { Document, Model } from "mongoose";
 import { UserRole } from '../../shared/schema.js';
 
-const userSchema = new mongoose.Schema({
+// Interface for User document
+export interface IUser extends Document {
+  username: string;
+  password: string;
+  name: string;
+  email: string;
+  role: UserRole;
+  avatar?: string;
+  googleId?: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+// Interface for User model with static methods
+export interface IUserModel extends Model<IUser> {
+  findOne(conditions: any): Promise<IUser | null>;
+  create(user: any): Promise<IUser>;
+  findById(id: any): Promise<IUser | null>;
+  findByIdAndUpdate(id: any, update: any, options?: any): Promise<IUser | null>;
+  find(conditions?: any): Promise<IUser[]>;
+  countDocuments(conditions?: any): Promise<number>;
+}
+
+const userSchema = new mongoose.Schema<IUser>({
   username: {
     type: String,
     required: true,
@@ -48,4 +71,4 @@ userSchema.methods.toJSON = function() {
   return user;
 };
 
-export const User = mongoose.model("User", userSchema); 
+export const User = mongoose.model<IUser, IUserModel>("User", userSchema); 
