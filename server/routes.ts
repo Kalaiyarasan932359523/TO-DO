@@ -499,7 +499,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Create the HTTP server
   const httpServer = createServer(app);
 
-  app.use((err: any, req: import('express').Request, res: import('express').Response, next: import('express').NextFunction) => {
+  app.use((err: any, req: Request, res: Response, next: NextFunction) => {
     console.error('Unhandled error:', err);
     res.status(500).json({ message: 'Internal Server Error', error: err?.message || err });
   });
