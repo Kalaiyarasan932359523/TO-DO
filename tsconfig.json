@@ -22,7 +22,9 @@
   },
   "include": [
     "server/**/*",
-    "shared/**/*"
+    "shared/**/*",
+    "dev/types/**/*",
+    "types/**/*"
   ],
   "exclude": [
     "node_modules",
