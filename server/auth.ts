@@ -71,7 +71,7 @@ export function setupAuth(app: Express) {
   app.use(passport.session());
 
   passport.use(
-    new LocalStrategy(async (username, password, done) => {
+    new LocalStrategy(async (username: string, password: string, done: any) => {
       try {
         const user = await User.findOne({ username });
         if (!user || !user.password || !(await comparePasswords(password, user.password))) {
