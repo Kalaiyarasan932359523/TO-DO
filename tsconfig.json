@@ -1,6 +1,6 @@
 {
   "include": ["server/**/*", "shared/**/*"],
-  "exclude": ["node_modules", "build", "dist", "**/*.test.ts"],
+  "exclude": ["node_modules", "build", "dist", "**/*.test.ts", "dev"],
   "compilerOptions": {
     "outDir": "dist",
     "module": "ESNext",

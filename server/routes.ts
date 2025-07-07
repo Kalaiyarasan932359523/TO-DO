@@ -1,4 +1,4 @@
-import type { Express, Request, Response } from "express";
+import type { Express, Request, Response, NextFunction } from "express";
 import { createServer, type Server } from "http";
 import { setupAuth } from "./auth";
 import multer from "multer";
@@ -487,8 +487,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-
-
   app.get("/api/feedback", isAuthenticated, async (req, res) => {
     try {
       const feedback = await Feedback.find({}).populate('user_id', 'name email');
@@ -500,6 +498,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   // Create the HTTP server
   const httpServer = createServer(app);
+
+  app.use((err: any, req: Request, res: Response, next: NextFunction) => {
+    // your error handling logic here
+  });
 
   return httpServer;
 }
