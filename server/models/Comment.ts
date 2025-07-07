@@ -1,4 +1,4 @@
-import mongoose, { Document, Model } from "mongoose";
+import mongoose, { Document, Model, Query } from "mongoose";
 
 // Interface for Comment document
 export interface IComment extends Document {
@@ -12,12 +12,12 @@ export interface IComment extends Document {
 
 // Interface for Comment model with static methods
 export interface ICommentModel extends Model<IComment> {
-  find(conditions?: any): Promise<IComment[]>;
-  findById(id: any): Promise<IComment | null>;
-  findByIdAndUpdate(id: any, update: any, options?: any): Promise<IComment | null>;
-  findByIdAndDelete(id: any): Promise<IComment | null>;
+  find(conditions?: any): Query<IComment[], IComment>;
+  findById(id: any): Query<IComment | null, IComment>;
+  findByIdAndUpdate(id: any, update: any, options?: any): Query<IComment | null, IComment>;
+  findByIdAndDelete(id: any): Query<IComment | null, IComment>;
   create(comment: any): Promise<IComment>;
-  countDocuments(conditions?: any): Promise<number>;
+  countDocuments(conditions?: any): Query<number, IComment>;
 }
 
 const commentSchema = new mongoose.Schema<IComment>({

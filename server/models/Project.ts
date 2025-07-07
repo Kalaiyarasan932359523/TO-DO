@@ -1,5 +1,5 @@
-import mongoose, { Document, Model } from "mongoose";
-import { ProjectStatus } from '../../shared/schema.js';
+import mongoose, { Document, Model, Query } from "mongoose";
+import { ProjectStatus } from '../../shared/schema';
 
 // Interface for Project document
 export interface IProject extends Document {
@@ -15,12 +15,12 @@ export interface IProject extends Document {
 
 // Interface for Project model with static methods
 export interface IProjectModel extends Model<IProject> {
-  find(conditions?: any): Promise<IProject[]>;
-  findById(id: any): Promise<IProject | null>;
-  findByIdAndUpdate(id: any, update: any, options?: any): Promise<IProject | null>;
-  findByIdAndDelete(id: any): Promise<IProject | null>;
+  find(conditions?: any): Query<IProject[], IProject>;
+  findById(id: any): Query<IProject | null, IProject>;
+  findByIdAndUpdate(id: any, update: any, options?: any): Query<IProject | null, IProject>;
+  findByIdAndDelete(id: any): Query<IProject | null, IProject>;
   create(project: any): Promise<IProject>;
-  countDocuments(conditions?: any): Promise<number>;
+  countDocuments(conditions?: any): Query<number, IProject>;
 }
 
 const projectSchema = new mongoose.Schema<IProject>({
@@ -36,7 +36,7 @@ const projectSchema = new mongoose.Schema<IProject>({
   status: {
     type: String,
     enum: Object.values(ProjectStatus),
-    default: ProjectStatus.ACTIVE
+    default: ProjectStatus.PLANNING
   },
   deadline: {
     type: Date

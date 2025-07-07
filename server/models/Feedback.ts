@@ -1,4 +1,4 @@
-import mongoose, { Document, Model } from "mongoose";
+import mongoose, { Document, Model, Query } from "mongoose";
 
 // Interface for Feedback document
 export interface IFeedback extends Document {
@@ -14,12 +14,12 @@ export interface IFeedback extends Document {
 
 // Interface for Feedback model with static methods
 export interface IFeedbackModel extends Model<IFeedback> {
-  find(conditions?: any): Promise<IFeedback[]>;
-  findById(id: any): Promise<IFeedback | null>;
-  findByIdAndUpdate(id: any, update: any, options?: any): Promise<IFeedback | null>;
-  findByIdAndDelete(id: any): Promise<IFeedback | null>;
+  find(conditions?: any): Query<IFeedback[], IFeedback>;
+  findById(id: any): Query<IFeedback | null, IFeedback>;
+  findByIdAndUpdate(id: any, update: any, options?: any): Query<IFeedback | null, IFeedback>;
+  findByIdAndDelete(id: any): Query<IFeedback | null, IFeedback>;
   create(feedback: any): Promise<IFeedback>;
-  countDocuments(conditions?: any): Promise<number>;
+  countDocuments(conditions?: any): Query<number, IFeedback>;
 }
 
 const feedbackSchema = new mongoose.Schema<IFeedback>({

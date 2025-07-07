@@ -1,4 +1,4 @@
-import mongoose, { Document, Model } from "mongoose";
+import mongoose, { Document, Model, Query } from "mongoose";
 
 // Interface for Activity document
 export interface IActivity extends Document {
@@ -14,12 +14,12 @@ export interface IActivity extends Document {
 
 // Interface for Activity model with static methods
 export interface IActivityModel extends Model<IActivity> {
-  find(conditions?: any): Promise<IActivity[]>;
-  findById(id: any): Promise<IActivity | null>;
-  findByIdAndUpdate(id: any, update: any, options?: any): Promise<IActivity | null>;
-  findByIdAndDelete(id: any): Promise<IActivity | null>;
+  find(conditions?: any): Query<IActivity[], IActivity>;
+  findById(id: any): Query<IActivity | null, IActivity>;
+  findByIdAndUpdate(id: any, update: any, options?: any): Query<IActivity | null, IActivity>;
+  findByIdAndDelete(id: any): Query<IActivity | null, IActivity>;
   create(activity: any): Promise<IActivity>;
-  countDocuments(conditions?: any): Promise<number>;
+  countDocuments(conditions?: any): Query<number, IActivity>;
 }
 
 const activitySchema = new mongoose.Schema<IActivity>({

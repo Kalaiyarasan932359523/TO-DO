@@ -1,4 +1,4 @@
-import mongoose, { Document, Model } from "mongoose";
+import mongoose, { Document, Model, Query } from "mongoose";
 
 // Interface for File document
 export interface IFile extends Document {
@@ -16,12 +16,12 @@ export interface IFile extends Document {
 
 // Interface for File model with static methods
 export interface IFileModel extends Model<IFile> {
-  find(conditions?: any): Promise<IFile[]>;
-  findById(id: any): Promise<IFile | null>;
-  findByIdAndUpdate(id: any, update: any, options?: any): Promise<IFile | null>;
-  findByIdAndDelete(id: any): Promise<IFile | null>;
+  find(conditions?: any): Query<IFile[], IFile>;
+  findById(id: any): Query<IFile | null, IFile>;
+  findByIdAndUpdate(id: any, update: any, options?: any): Query<IFile | null, IFile>;
+  findByIdAndDelete(id: any): Query<IFile | null, IFile>;
   create(file: any): Promise<IFile>;
-  countDocuments(conditions?: any): Promise<number>;
+  countDocuments(conditions?: any): Query<number, IFile>;
 }
 
 const fileSchema = new mongoose.Schema<IFile>({

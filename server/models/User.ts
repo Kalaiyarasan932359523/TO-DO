@@ -1,5 +1,5 @@
-import mongoose, { Document, Model } from "mongoose";
-import { UserRole } from '../../shared/schema.js';
+import mongoose, { Document, Model, Query } from "mongoose";
+import { UserRole } from '../../shared/schema';
 
 // Interface for User document
 export interface IUser extends Document {
@@ -16,12 +16,12 @@ export interface IUser extends Document {
 
 // Interface for User model with static methods
 export interface IUserModel extends Model<IUser> {
-  findOne(conditions: any): Promise<IUser | null>;
+  findOne(conditions: any): Query<IUser | null, IUser>;
   create(user: any): Promise<IUser>;
-  findById(id: any): Promise<IUser | null>;
-  findByIdAndUpdate(id: any, update: any, options?: any): Promise<IUser | null>;
-  find(conditions?: any): Promise<IUser[]>;
-  countDocuments(conditions?: any): Promise<number>;
+  findById(id: any): Query<IUser | null, IUser>;
+  findByIdAndUpdate(id: any, update: any, options?: any): Query<IUser | null, IUser>;
+  find(conditions?: any): Query<IUser[], IUser>;
+  countDocuments(conditions?: any): Query<number, IUser>;
 }
 
 const userSchema = new mongoose.Schema<IUser>({
@@ -50,7 +50,7 @@ const userSchema = new mongoose.Schema<IUser>({
   role: {
     type: String,
     enum: Object.values(UserRole),
-    default: UserRole.USER
+    default: UserRole.TEAM_MEMBER
   },
   avatar: {
     type: String,

@@ -13,7 +13,7 @@ import {
   TaskStatus,
   ProjectStatus,
   UserRole
-} from "../../shared/schema.js";
+} from "../../shared/schema";
 import passport from "passport";
 import { User, Project, Task, Comment, Activity, File, Feedback } from './models/index.js';
 

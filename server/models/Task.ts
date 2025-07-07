@@ -1,5 +1,5 @@
-import mongoose, { Document, Model } from "mongoose";
-import { TaskStatus } from '../../shared/schema.js';
+import mongoose, { Document, Model, Query } from "mongoose";
+import { TaskStatus } from '../../shared/schema';
 
 // Interface for Task document
 export interface ITask extends Document {
@@ -19,12 +19,12 @@ export interface ITask extends Document {
 
 // Interface for Task model with static methods
 export interface ITaskModel extends Model<ITask> {
-  find(conditions?: any): Promise<ITask[]>;
-  findById(id: any): Promise<ITask | null>;
-  findByIdAndUpdate(id: any, update: any, options?: any): Promise<ITask | null>;
-  findByIdAndDelete(id: any): Promise<ITask | null>;
+  find(conditions?: any): Query<ITask[], ITask>;
+  findById(id: any): Query<ITask | null, ITask>;
+  findByIdAndUpdate(id: any, update: any, options?: any): Query<ITask | null, ITask>;
+  findByIdAndDelete(id: any): Query<ITask | null, ITask>;
   create(task: any): Promise<ITask>;
-  countDocuments(conditions?: any): Promise<number>;
+  countDocuments(conditions?: any): Query<number, ITask>;
 }
 
 const taskSchema = new mongoose.Schema<ITask>({

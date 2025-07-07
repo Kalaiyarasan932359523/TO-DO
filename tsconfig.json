@@ -1,31 +1,33 @@
 {
   "include": [
-    "custom.d.ts",
     "server/**/*",
-    "shared/**/*",
-    "dev/**/*"
+    "shared/**/*"
   ],
   "exclude": [
     "node_modules",
-    "build",
-    "dist",
-    "client",
-    "**/*.test.ts"
+    "client/**/*",
+    "dist"
   ],
   "compilerOptions": {
-    "outDir": "dist",
-    "module": "NodeNext",
     "target": "ES2022",
+    "lib": ["ES2022"],
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "outDir": "dist",
+    "rootDir": ".",
     "strict": true,
     "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "skipLibCheck": true,
-    "moduleResolution": "NodeNext",
-    "rootDir": ".",
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": false,
+    "allowImportingTsExtensions": false,
     "baseUrl": ".",
     "types": ["node"],
     "paths": {
       "@shared/*": ["shared/*"]
-    },
-    "allowSyntheticDefaultImports": true
+    }
   }
 }
