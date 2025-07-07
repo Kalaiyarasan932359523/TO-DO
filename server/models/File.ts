@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { fileSchema } from '../../shared/schema';
+import { fileSchema } from '../../shared/schema.js';
 
 const fileSchemaMongoose = new mongoose.Schema({
   filename: { type: String, required: true },

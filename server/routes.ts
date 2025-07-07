@@ -1,10 +1,10 @@
 import type { Express, Request, Response, NextFunction } from "express";
 import { createServer, type Server } from "http";
-import { setupAuth } from "./auth";
+import { setupAuth } from "./auth.js";
 import multer from "multer";
 import path from "path";
 import fs from "fs";
-import { handleChatRequest } from "./chatbot";
+import { handleChatRequest } from "./chatbot.js";
 import {
   // projectSchema, // If needed for validation, otherwise remove
   // commentSchema, // If needed for validation, otherwise remove
@@ -13,9 +13,9 @@ import {
   TaskStatus,
   ProjectStatus,
   UserRole
-} from "@shared/schema";
+} from "../../shared/schema.js";
 import passport from "passport";
-import { User, Project, Task, Comment, Activity, File, Feedback } from './models/index';
+import { User, Project, Task, Comment, Activity, File, Feedback } from './models/index.js';
 
 // Configure multer for file uploads
 const uploadDir = path.join(process.cwd(), "uploads");

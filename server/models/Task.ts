@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { taskSchema, TaskStatus, TaskPriority } from '../../shared/schema';
+import { taskSchema, TaskStatus, TaskPriority } from '../../shared/schema.js';
 
 const taskSchemaMongoose = new mongoose.Schema({
   title: { type: String, required: true },

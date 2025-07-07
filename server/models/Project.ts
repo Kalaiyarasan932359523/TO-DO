@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { projectSchema, ProjectStatus } from '../../shared/schema';
+import { projectSchema, ProjectStatus } from '../../shared/schema.js';
 
 const projectSchemaMongoose = new mongoose.Schema({
   name: { type: String, required: true },

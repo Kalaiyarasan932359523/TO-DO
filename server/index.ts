@@ -2,10 +2,10 @@ import dotenv from 'dotenv';
 dotenv.config();
 import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes.js";
-import { serveStatic, log } from "./vite";
+import { serveStatic, log } from "./vite.js";
 import session from 'express-session';
 import cors from 'cors';
-import connectDB from './db';
+import connectDB from './db.js';
 
 const app = express();
 app.use(express.json());

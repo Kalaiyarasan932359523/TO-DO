@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { userSchema, UserRole } from '../../shared/schema';
+import { userSchema, UserRole } from '../../shared/schema.js';
 
 const userSchemaMongoose = new mongoose.Schema({
   username: { type: String, required: true, unique: true },

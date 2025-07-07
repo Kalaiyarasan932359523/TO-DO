@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { commentSchema } from '../../shared/schema';
+import { commentSchema } from '../../shared/schema.js';
 
 const commentSchemaMongoose = new mongoose.Schema({
   content: { type: String, required: true },

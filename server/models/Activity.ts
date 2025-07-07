@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { activitySchema } from '../../shared/schema';
+import { activitySchema } from '../../shared/schema.js';
 
 const activitySchemaMongoose = new mongoose.Schema({
   action: { type: String, required: true },

@@ -5,7 +5,7 @@ import { Express, Request } from "express";
 import session from "express-session";
 import { scrypt, randomBytes, timingSafeEqual } from "crypto";
 import { promisify } from "util";
-import { User } from './models/index';
+import { User } from "./models/index.js";
 
 // Define UserRole enum locally to avoid shared schema dependency
 enum UserRole {
