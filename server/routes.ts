@@ -82,7 +82,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       (req.session as any).userId = user._id.toString();
       
       // Save session before redirect
-      req.session.save((err) => {
+      req.session.save((err: any) => {
         if (err) {
           console.error("Session save error:", err);
           return res.redirect("/login");
