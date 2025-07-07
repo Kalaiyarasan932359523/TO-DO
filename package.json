@@ -9,6 +9,7 @@
     "build:client": "cd client && npm run build",
     "build:full": "npm run build && npm run build:client",
     "start": "cross-env NODE_ENV=production node dist/index.js",
+    "start:api-only": "cross-env NODE_ENV=production API_ONLY=true node dist/index.js",
     "check": "tsc",
     "vercel-build": "mkdir -p dist && echo 'Backend API' > dist/index.html"
   },

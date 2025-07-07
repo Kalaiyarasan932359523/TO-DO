@@ -3,7 +3,7 @@ services:
     name: collaborative-task-manager-api
     env: node
     buildCommand: npm install && npm run build
-    startCommand: npm start
+    startCommand: npm run start:api-only
     rootDir: .
     envVars:
       - key: NODE_ENV

@@ -71,12 +71,13 @@ export async function setupVite(app: Express, server: Server) {
 }
 
 export function serveStatic(app: Express) {
-  const distPath = path.resolve(__dirname, "public");
+  // For production, look for client build in client/dist
+  const distPath = path.resolve(__dirname, "..", "client", "dist");
 
   if (!fs.existsSync(distPath)) {
-    throw new Error(
-      `Could not find the build directory: ${distPath}, make sure to build the client first`,
-    );
+    console.warn(`Client build not found at: ${distPath}`);
+    console.warn("This is expected for API-only deployments (like Render)");
+    return;
   }
 
   app.use(express.static(distPath));
