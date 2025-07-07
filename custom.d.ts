@@ -1,5 +1,4 @@
 declare module 'cors';
-declare module 'express-session';
 declare module 'passport-local';
 declare module 'vite';
 declare module '@replit/vite-plugin-cartographer';
