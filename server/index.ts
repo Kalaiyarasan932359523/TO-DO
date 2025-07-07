@@ -16,8 +16,8 @@ app.use(cors({
   origin: [
     'http://localhost:3000', // Development
     'https://your-netlify-app.netlify.app', // Production - replace with your actual Netlify URL
-    process.env.FRONTEND_URL // Environment variable
-  ].filter(Boolean),
+    process.env.FRONTEND_URL
+  ].filter(Boolean) as string[],
   credentials: true
 }));
 
