@@ -14,12 +14,12 @@
   ],
   "compilerOptions": {
     "outDir": "dist",
-    "module": "ESNext",
+    "module": "NodeNext",
     "target": "ESNext",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "moduleResolution": "Node",
+    "moduleResolution": "nodenext",
     "baseUrl": ".",
     "types": ["node"],
     "paths": {
