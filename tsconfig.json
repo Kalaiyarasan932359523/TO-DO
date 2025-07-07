@@ -1,6 +1,17 @@
 {
-  "include": ["custom.d.ts", "server/**/*", "shared/**/*", "dev/**/*", "client/**/*"],
-  "exclude": ["node_modules", "build", "dist", "**/*.test.ts"],
+  "include": [
+    "custom.d.ts",
+    "server/**/*",
+    "shared/**/*",
+    "dev/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "build",
+    "dist",
+    "client",
+    "**/*.test.ts"
+  ],
   "compilerOptions": {
     "outDir": "dist",
     "module": "ESNext",
