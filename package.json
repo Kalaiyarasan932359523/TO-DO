@@ -9,7 +9,7 @@
   "scripts": {
     "clean": "npx rimraf dist",
     "dev": "tsx server/index.ts",
-    "build": "tsc && cp -r shared dist/shared",
+    "build": "tsc && node -e \"const fs=require('fs');const path=require('path');if(fs.existsSync('shared')){fs.cpSync('shared','dist/shared',{recursive:true,force:true})}\"",
     "build:client": "cd client && npm run build",
     "build:full": "npm run build && npm run build:client",
     "build:server": "tsc --project tsconfig.server.json",
