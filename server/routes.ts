@@ -487,6 +487,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Add a root route for GET /
+  app.get("/", (req, res) => {
+    res.send("API is running!");
+  });
+
   // Create the HTTP server
   const httpServer = createServer(app);
 
