@@ -15,15 +15,17 @@
   "compilerOptions": {
     "outDir": "dist",
     "module": "NodeNext",
-    "target": "ESNext",
+    "target": "ES2022",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "moduleResolution": "nodenext",
+    "moduleResolution": "NodeNext",
+    "rootDir": ".",
     "baseUrl": ".",
     "types": ["node"],
     "paths": {
       "@shared/*": ["shared/*"]
-    }
+    },
+    "allowSyntheticDefaultImports": true
   }
 }

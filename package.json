@@ -3,10 +3,13 @@
   "version": "1.0.0",
   "type": "module",
   "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "scripts": {
     "clean": "npx rimraf dist",
     "dev": "tsx server/index.ts",
-    "build": "tsc",
+    "build": "tsc && cp -r shared dist/shared",
     "build:client": "cd client && npm run build",
     "build:full": "npm run build && npm run build:client",
     "build:server": "tsc --project tsconfig.server.json",
