@@ -24,7 +24,7 @@ export async function setupVite(app: Express, server: Server, viteConfig: any) {
     configFile: false,
     customLogger: {
       ...viteLogger,
-      error: (msg, options) => {
+      error: (msg: any, options: any) => {
         viteLogger.error(msg, options);
         process.exit(1);
       },
@@ -34,7 +34,7 @@ export async function setupVite(app: Express, server: Server, viteConfig: any) {
   });
 
   app.use(vite.middlewares);
-  app.use("*", async (req, res, next) => {
+  app.use("*", async (req: any, res: any, next: any) => {
     const url = req.originalUrl;
 
     try {
