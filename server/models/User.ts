@@ -23,7 +23,11 @@ const userSchema = new mongoose.Schema<IUser>({
   },
   password: {
     type: String,
-    required: true
+    required: function() {
+      // Only require password if not a Google user
+      return !this.googleId;
+    },
+    default: ""
   },
   name: {
     type: String,
