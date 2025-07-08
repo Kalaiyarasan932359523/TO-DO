@@ -6,6 +6,7 @@ import { serveStatic, log } from "./vite.js";
 import session from 'express-session';
 import cors from 'cors';
 import connectDB from './db.js';
+import type { CorsOptionsDelegate } from 'cors';
 
 const app = express();
 app.use(express.json());
@@ -17,7 +18,7 @@ const allowedOrigins = [
 ];
 
 app.use(cors({
-  origin: function (origin, callback) {
+  origin: function (origin: string | undefined, callback: (err: Error | null, allow?: boolean) => void) {
     // allow requests with no origin (like mobile apps, curl, etc.)
     if (!origin) return callback(null, true);
     if (allowedOrigins.includes(origin)) {
