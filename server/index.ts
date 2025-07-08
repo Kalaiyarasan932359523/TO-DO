@@ -88,7 +88,7 @@ app.use((req, res, next) => {
 
   // ALWAYS serve the app on port 8080 (Cloud Run default)
   const port = Number(process.env.PORT) || 8080;
-  app.listen(port, () => {
+  app.listen(port, '0.0.0.0', () => {
     log(`serving on port ${port}`);
   });
 })();
