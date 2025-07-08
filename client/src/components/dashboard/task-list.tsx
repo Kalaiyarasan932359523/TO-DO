@@ -42,7 +42,6 @@ export function TaskList({
     queryFn: async () => {
       let url = `/api/tasks?page=${page}&limit=${limit}&sortBy=${sortBy}&sortOrder=${sortOrder}`;
       if (projectId) url += `&projectId=${projectId}`;
-      if (userId) url += `&assigneeId=${userId}`;
       const res = await fetch(url, { credentials: "include" });
       if (!res.ok) throw new Error("Failed to fetch tasks");
       return res.json();
