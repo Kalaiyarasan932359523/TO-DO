@@ -36,33 +36,42 @@ export default function AuthPage() {
     }
   }, [user, navigate]);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  // Separate handlers for login and register
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    
     try {
-      if (loginUsername) {
-        await loginMutation.mutateAsync({
-          username: loginUsername,
-          password: loginPassword,
-        });
-        toast({
-          title: "Welcome back!",
-          description: "You have been successfully logged in.",
-        });
-      } else {
-        await registerMutation.mutateAsync({
-          username: registerUsername,
-          email: registerEmail,
-          password: registerPassword,
-          name: registerName,
-          role: registerRole,
-        });
-        toast({
-          title: "Account created!",
-          description: "Your account has been created successfully.",
-        });
-      }
+      await loginMutation.mutateAsync({
+        username: loginUsername,
+        password: loginPassword,
+      });
+      toast({
+        title: "Welcome back!",
+        description: "You have been successfully logged in.",
+      });
+      navigate("/dashboard");
+    } catch (error: any) {
+      toast({
+        title: "Error",
+        description: error.message || "Something went wrong. Please try again.",
+        variant: "destructive",
+      });
+    }
+  };
+
+  const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    try {
+      await registerMutation.mutateAsync({
+        username: registerUsername,
+        email: registerEmail,
+        password: registerPassword,
+        name: registerName,
+        role: registerRole,
+      });
+      toast({
+        title: "Account created!",
+        description: "Your account has been created successfully.",
+      });
       navigate("/dashboard");
     } catch (error: any) {
       toast({
@@ -97,7 +106,7 @@ export default function AuthPage() {
 
             {/* Login Form */}
             <TabsContent value="login">
-              <form onSubmit={handleSubmit} className="space-y-4">
+              <form onSubmit={handleLogin} className="space-y-4">
                 <div className="space-y-2">
                   <Label htmlFor="login-username">Username</Label>
                   <Input
@@ -180,7 +189,7 @@ export default function AuthPage() {
 
             {/* Register Form */}
             <TabsContent value="register">
-              <form onSubmit={handleSubmit} className="space-y-4">
+              <form onSubmit={handleRegister} className="space-y-4">
                 <div className="space-y-2">
                   <Label htmlFor="register-name">Full Name</Label>
                   <Input
