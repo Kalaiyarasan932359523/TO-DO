@@ -169,7 +169,7 @@ export default function FilesPage() {
     <MainLayout>
       {/* File Upload Dialog */}
       <Dialog open={isUploadModalOpen} onOpenChange={setIsUploadModalOpen}>
-        <DialogContent className="sm:max-w-md">
+        <DialogContent className="sm:max-w-md bg-white">
           <DialogHeader>
             <DialogTitle>Upload File</DialogTitle>
             <DialogDescription>
