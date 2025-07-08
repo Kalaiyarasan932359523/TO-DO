@@ -86,6 +86,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       console.log("Registration successful for:", user.username);
       // Ensure user data is set in the cache
       queryClient.setQueryData(["/api/user"], user);
+      // Invalidate users query for dashboard
+      queryClient.invalidateQueries({ predicate: (query) => query.queryKey[0] === "/api/users" });
       toast({
         title: "Registration successful",
         description: `Welcome to My To Do, ${user.name}!`,

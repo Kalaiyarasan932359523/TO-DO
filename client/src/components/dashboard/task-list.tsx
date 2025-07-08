@@ -118,10 +118,10 @@ export function TaskList({
           <div className="flex items-center space-x-2">
             {/* Sorting controls */}
             <Select value={sortBy} onValueChange={setSortBy}>
-              <SelectTrigger className="text-sm py-1 px-2 h-8 w-[130px] border-gray-200">
+              <SelectTrigger className="text-sm py-1 px-2 h-8 w-[130px] border-gray-200 bg-white">
                 <SelectValue placeholder="Sort By" />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent className="bg-white">
                 <SelectItem value="createdAt">Created</SelectItem>
                 <SelectItem value="title">Title</SelectItem>
                 <SelectItem value="deadline">Deadline</SelectItem>
@@ -135,10 +135,10 @@ export function TaskList({
             </Button>
             {showFilter && (
               <Select value={filter} onValueChange={setFilter}>
-                <SelectTrigger className="text-sm py-1 px-2 h-8 w-[130px] border-gray-200">
+                <SelectTrigger className="text-sm py-1 px-2 h-8 w-[130px] border-gray-200 bg-white">
                   <SelectValue placeholder="All Tasks" />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="bg-white">
                   <SelectItem value="all">All Tasks</SelectItem>
                   <SelectItem value="todo">To Do</SelectItem>
                   <SelectItem value="in_progress">In Progress</SelectItem>
