@@ -170,7 +170,7 @@ export function NewTaskModal({ isOpen, onClose, initialTask }: NewTaskModalProps
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && handleClose()}>
-      <DialogContent className="sm:max-w-[550px]">
+      <DialogContent className="sm:max-w-[550px] bg-white">
         <DialogHeader>
           <DialogTitle>{initialTask ? "Edit Task" : "Create New Task"}</DialogTitle>
         </DialogHeader>
