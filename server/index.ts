@@ -11,12 +11,21 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-const allowedOrigins = process.env.NODE_ENV === 'production'
-  ? [process.env.FRONTEND_URL || 'https://your-frontend-app.onrender.com']
-  : ['http://localhost:3000'];
+const allowedOrigins = [
+  'https://taskmanager124.netlify.app', // Netlify frontend
+  'http://localhost:3000' // local dev
+];
 
 app.use(cors({
-  origin: allowedOrigins,
+  origin: function (origin, callback) {
+    // allow requests with no origin (like mobile apps, curl, etc.)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    } else {
+      return callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true,
 }));
 
