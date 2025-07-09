@@ -14,6 +14,7 @@ import { useToast } from "@/hooks/use-toast";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { queryClient, apiRequest } from "@/lib/queryClient";
 import { useAuth } from "@/hooks/use-auth";
+import { config } from "@/lib/config";
 
 // Define TypeScript interfaces for file data
 interface FileData {
@@ -40,7 +41,7 @@ export default function FilesPage() {
   const { data: userFiles = [], isLoading: isLoadingFiles, refetch: refetchFiles } = useQuery({
     queryKey: ['/api/files'],
     queryFn: async () => {
-      const res = await fetch('/api/files', { credentials: 'include' });
+      const res = await fetch(`${config.API_URL}/api/files`, { credentials: 'include' });
       if (!res.ok) throw new Error('Failed to fetch files');
       return res.json();
     }
@@ -50,7 +51,7 @@ export default function FilesPage() {
   const { data: tasks = { tasks: [] }, isLoading: isLoadingTasks, refetch: refetchTasks } = useQuery({
     queryKey: ['/api/tasks'],
     queryFn: async () => {
-      const res = await fetch('/api/tasks', { credentials: 'include' });
+      const res = await fetch(`${config.API_URL}/api/tasks`, { credentials: 'include' });
       if (!res.ok) throw new Error('Failed to fetch tasks');
       return res.json();
     }
@@ -63,7 +64,7 @@ export default function FilesPage() {
   const uploadMutation = useMutation({
     mutationFn: async (formData: FormData) => {
       try {
-        const res = await fetch('/api/files/upload', {
+        const res = await fetch(`${config.API_URL}/api/files/upload`, {
           method: 'POST',
           body: formData,
           credentials: 'include'

@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { User } from "@/lib/types";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { apiRequest, queryClient } from "@/lib/queryClient";
+import { config } from "@/lib/config";
 
 export function ShareTaskModal({ open, onOpenChange, task }) {
   const [search, setSearch] = useState("");
@@ -15,7 +16,7 @@ export function ShareTaskModal({ open, onOpenChange, task }) {
   const { data: users = [] } = useQuery<User[]>({
     queryKey: ["/api/users"],
     queryFn: async () => {
-      const res = await fetch("/api/users", { credentials: "include" });
+      const res = await fetch(`${config.API_URL}/api/users`, { credentials: "include" });
       if (!res.ok) throw new Error("Failed to fetch users");
       return res.json();
     },

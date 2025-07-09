@@ -2,13 +2,14 @@ import { useQuery } from "@tanstack/react-query";
 import { Task, TaskStatus } from "@/lib/types";
 import { Card, CardContent } from "@/components/ui/card";
 import { CheckSquare, Clock, CheckCircle, Users, TrendingUp, ArrowUp } from "lucide-react";
+import config from "@/config";
 
 export function QuickStats() {
   // Fetch all tasks
   const { data: tasks = { tasks: [] } } = useQuery<{ tasks: Task[] }>({
     queryKey: ["/api/tasks"],
     queryFn: async () => {
-      const res = await fetch("/api/tasks", { credentials: "include" });
+      const res = await fetch(`${config.API_URL}/api/tasks`, { credentials: "include" });
       if (!res.ok) throw new Error("Failed to fetch tasks");
       const data = await res.json();
       console.log("QuickStats fetched tasks:", data);
@@ -23,7 +24,7 @@ export function QuickStats() {
   const { data: users = [] } = useQuery({
     queryKey: ["/api/users"],
     queryFn: async () => {
-      const res = await fetch("/api/users", { credentials: "include" });
+      const res = await fetch(`${config.API_URL}/api/users`, { credentials: "include" });
       if (!res.ok) throw new Error("Failed to fetch users");
       return res.json();
     },

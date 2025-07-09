@@ -13,6 +13,7 @@ import { Task, TaskPriority, TaskStatus } from "@/lib/types";
 
 import { Loader2, Calendar, Upload, X } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { config } from "@/lib/config";
 
 // Define interface for task data sent to API
 interface TaskSubmitData extends Omit<Partial<Task>, 'deadline'> {
@@ -59,7 +60,7 @@ export function NewTaskModal({ isOpen, onClose, initialTask }: NewTaskModalProps
           const formData = new FormData();
           formData.append("file", selectedFile);
           formData.append("taskId", createdTask._id.toString());
-          const uploadRes = await fetch("/api/files/upload", {
+          const uploadRes = await fetch(`${config.API_URL}/api/files/upload`, {
             method: "POST",
             body: formData,
             credentials: "include",
