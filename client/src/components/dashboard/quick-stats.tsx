@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Task, TaskStatus } from "@/lib/types";
 import { Card, CardContent } from "@/components/ui/card";
 import { CheckSquare, Clock, CheckCircle, Users, TrendingUp, ArrowUp } from "lucide-react";
-import config from "@/config";
+import { config } from "@/lib/config";
 
 export function QuickStats() {
   // Fetch all tasks
